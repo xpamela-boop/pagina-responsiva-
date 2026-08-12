@@ -1,0 +1,16 @@
+/* Localize o seletor do article e aplique as alterações abaixo */
+article {
+  /* Altera o alinhamento para exibir imagem, título e texto em linha */
+  flex-direction: row;
+
+  /* Faz com que cada card ocupe 100% da largura da página */
+  flex: 0 0 100%;
+  width: 100%; /* Garante o preenchimento total do container */
+}
+
+/* Exemplo de uso da propriedade align-self em um elemento interno */
+/* Escolha o elemento desejado (ex: imagem, botão, ou .card-button) */
+article img {
+  /* Modifica o alinhamento individual deste elemento em relação ao container flex */
+  align-self: flex-start; /* Opções: flex-start, flex-end, center, stretch, etc. */
+}
