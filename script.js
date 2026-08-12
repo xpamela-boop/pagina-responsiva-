@@ -1,37 +1,52 @@
-// Dados simulados de postagens
-const posts = [
+// Galeria de imagens em destaque
+const gallery = [
   {
-    title: "Primeira Postagem Horizontal",
-    image: "https://via.placeholder.com/150",
-    text: "Este é o texto da primeira postagem. Com o novo layout, os elementos ficam dispostos em linha e ocupam toda a largura do container.",
-    likes: 0
+    id: 1,
+    title: "Luzes do Horizonte Urbano",
+    tag: "Fotografia Urbana",
+    image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=80",
+    description: "Captura noturna de uma metrópole vibrante, destacando o contraste entre a arquitetura moderna e as luzes da cidade.",
+    likes: 12
   },
   {
-    title: "Segunda Postagem em Destaque",
-    image: "https://via.placeholder.com/150",
-    text: "Aqui temos outra postagem mostrando como a propriedade flex-direction: row organiza a imagem, título e texto de forma limpa.",
-    likes: 0
+    id: 2,
+    title: "O Despertar da Natureza",
+    tag: "Paisagem",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80",
+    description: "Manhã de neblina nas montanhas revelando a serenidade das florestas intocadas ao amanhecer.",
+    likes: 24
+  },
+  {
+    id: 3,
+    title: "Minimalismo Arquitetônico",
+    tag: "Design",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+    description: "Linhas limpas, sombras profundas e formas geométricas que transformam a estrutura moderna em uma obra de arte.",
+    likes: 18
   }
 ];
 
-// Função para renderizar os posts no DOM
-function renderPosts() {
+// Renderiza a galeria visual no container
+function renderGallery() {
   const container = document.querySelector('#posts-container');
   if (!container) return;
 
   container.innerHTML = '';
 
-  posts.forEach((post, index) => {
+  gallery.forEach((item) => {
     const article = document.createElement('article');
     
     article.innerHTML = `
-      <img src="${post.image}" alt="${post.title}" />
+      <img src="${item.image}" alt="${item.title}" class="post-cover" />
       <div class="card-content">
-        <h2>${post.title}</h2>
-        <p>${post.text}</p>
-        <button class="like-btn" onclick="likePost(${index})">
-          ❤️ Curtir (<span id="like-count-${index}">${post.likes}</span>)
-        </button>
+        <span class="category-badge">${item.tag}</span>
+        <h2>${item.title}</h2>
+        <p>${item.description}</p>
+        <div class="card-actions">
+          <button class="like-btn" onclick="addLike(${item.id})">
+            ❤️ <span id="likes-${item.id}">${item.likes}</span>
+          </button>
+        </div>
       </div>
     `;
 
@@ -39,14 +54,17 @@ function renderPosts() {
   });
 }
 
-// Função para incrementar curtidas
-function likePost(index) {
-  posts[index].likes += 1;
-  const likeCountElement = document.getElementById(`like-count-${index}`);
-  if (likeCountElement) {
-    likeCountElement.textContent = posts[index].likes;
+// Incrementa as curtidas
+function addLike(id) {
+  const item = gallery.find(g => g.id === id);
+  if (item) {
+    item.likes += 1;
+    const likeElement = document.getElementById(`likes-${id}`);
+    if (likeElement) {
+      likeElement.textContent = item.likes;
+    }
   }
 }
 
-// Inicializa a renderização quando o documento carregar
-document.addEventListener('DOMContentLoaded', renderPosts);
+// Inicializa o script
+document.addEventListener('DOMContentLoaded', renderGallery);
