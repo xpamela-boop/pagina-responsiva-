@@ -1,16 +1,57 @@
-/* Localize o seletor do article e aplique as alterações abaixo */
+/* Card em formato de post horizontal */
 article {
-  /* Altera o alinhamento para exibir imagem, título e texto em linha */
-  flex-direction: row;
-
-  /* Faz com que cada card ocupe 100% da largura da página */
-  flex: 0 0 100%;
-  width: 100%; /* Garante o preenchimento total do container */
+  display: flex;
+  flex-direction: row; /* Exibe a imagem, o título e o texto em linha */
+  flex: 0 0 100%;       /* Ocupa 100% da largura do container */
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease;
 }
 
-/* Exemplo de uso da propriedade align-self em um elemento interno */
-/* Escolha o elemento desejado (ex: imagem, botão, ou .card-button) */
-article img {
-  /* Modifica o alinhamento individual deste elemento em relação ao container flex */
-  align-self: flex-start; /* Opções: flex-start, flex-end, center, stretch, etc. */
+article:hover {
+  transform: translateY(-2px);
+}
+
+/* Imagem de capa */
+article .post-cover {
+  width: 320px;
+  height: 220px;
+  object-fit: cover;
+  /* align-self posicionando a imagem no início vertical do card */
+  align-self: flex-start; 
+}
+
+/* Conteúdo do Card */
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Badge estilizada */
+.category-badge {
+  background-color: #0070f3;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  /* align-self alinhando a tag à esquerda topo */
+  align-self: flex-start;
+}
+
+/* Botão de curtir com align-self para posicionamento individual */
+.like-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-end; /* Quebra o alinhamento padrão e vai para o canto direito */
 }
